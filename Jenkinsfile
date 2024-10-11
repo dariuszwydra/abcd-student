@@ -12,11 +12,21 @@ pipeline {
                 }
             }
         }
-        stage('Example') {
+        stage('ZAP Scan') {
             steps {
-                echo 'Hello!'
-                sh 'ls -la'
+                sh '''
+                    docker run --name zap \
+                    -v C:/Users/dnw/Desktop/ABCDevSecOps/abcd-student/.zap:/zap/wrk:rw \
+                    -v C:/Users/dnw/Desktop/ABCDevSecOps/reports:/zap/wrk/reports \
+                    -t ghcr.io/zaproxy/zaproxy:stable bash -c \\
+                    "zap.sh -cmd -addonupdate && \\
+                    zap.sh -cmd -addoninstall communityScripts && \\
+                    zap.sh -cmd -addoninstall pscanrulesAlpha && \\
+                    zap.sh -cmd -addoninstall pscanrulesBeta && \\
+                    zap.sh -cmd -autorun /zap/wrk/passive.yaml"
+                '''
             }
         }
     }
 }
+
