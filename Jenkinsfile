@@ -47,7 +47,7 @@ pipeline {
             defectDojoPublisher(
                 artifact: '${WORKSPACE}/osv_scanner-report.sarif', 
                 productName: 'Juice Shop', 
-                scanType: 'OSV_scanner scan', 
+                scanType: 'SARIF', 
                 engagementName: 'dariusz.wydra@dsr.com.pl'
             )
         }
