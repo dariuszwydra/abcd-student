@@ -44,15 +44,15 @@ pipeline {
     }
     post {
         always {
-            sh '''
-                echo "POST Job"
-                '''
-            // defectDojoPublisher(
-            //     artifact: '${WORKSPACE}/trufflehog_results.json', 
-            //     productName: 'Juice Shop', 
-            //     scanType: 'Trufflehog Scan', 
-            //     engagementName: 'dariusz.wydra@dsr.com.pl'
-            // )
+            // sh '''
+            //     echo "POST Job"
+            //     '''
+            defectDojoPublisher(
+                artifact: '${WORKSPACE}/trufflehog_results.json', 
+                productName: 'Juice Shop', 
+                scanType: 'Trufflehog Scan', 
+                engagementName: 'dariusz.wydra@dsr.com.pl'
+            )
         }
     }
 }
