@@ -50,7 +50,7 @@ pipeline {
             defectDojoPublisher(
                 artifact: '${WORKSPACE}/semgrep_report.json', 
                 productName: 'Juice Shop', 
-                scanType: 'Semgrep Scan', 
+                scanType: 'Semgrep JSON Report', 
                 engagementName: 'dariusz.wydra@dsr.com.pl'
             )
         }
