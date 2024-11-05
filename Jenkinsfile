@@ -37,7 +37,7 @@ pipeline {
         stage('Trufflehog Scan') {
             steps {
                 sh '''
-                    trufflehog git file://. --force-skip-archives --json > trufflehog_results.json
+                    semgrep --autoselect --json --output=semgrep_report.json
                 '''
             }
         }
@@ -48,9 +48,9 @@ pipeline {
             //     echo "POST Job"
             //     '''
             defectDojoPublisher(
-                artifact: '${WORKSPACE}/trufflehog_results.json', 
+                artifact: '${WORKSPACE}/semgrep_report.json', 
                 productName: 'Juice Shop', 
-                scanType: 'Trufflehog Scan', 
+                scanType: 'Semgrep Scan', 
                 engagementName: 'dariusz.wydra@dsr.com.pl'
             )
         }
