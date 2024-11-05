@@ -37,7 +37,7 @@ pipeline {
         stage('Semgrep Scan') {
             steps {
                 sh '''
-                    semgrep --autoselect --json --output=semgrep_report.json
+                    semgrep --config=auto --json --output=semgrep_report.json
                 '''
             }
         }
